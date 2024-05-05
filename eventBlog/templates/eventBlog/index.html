@@ -1,0 +1,21 @@
+{% extends 'eventBlog\base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'eventBlog/css/index_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="grid-container">
+  {% for event in events %}
+  <div class="box">
+    <a href="{% url 'details' event.id %}" target="_blank">
+      <img src="{{ MEDIA_URL }}{{ event.poster }}" alt="{{ event.title }} poster">
+      <h3 class="title">{{ event.title }}</h3>
+      <h5 class="date">{{ event.date }}</h5>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

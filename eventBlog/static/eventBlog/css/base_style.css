@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.bar-nav {
+    z-index: 15000;
+}
+
+.main-body {
+    padding-top: 75px;
+}
+
+@media (max-width: 248.53px) {
+    .main-body {
+        padding-top: 115px;
+    }
+}
+
+@media (max-width: 172.94px) {
+    .main-body {
+        padding-top: 155px;
+    }
+}
+
+.nav-link:hover {
+    background-color: #c3cfcf;
+}
+
+.active {
+    transition: 0.3s transform ease;
+}
+
+.active:hover {
+    transition: 0.3s transform ease;
+    transform: scale(1.1);
+}
