@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'eventBlog/css/event_style.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -16,6 +17,7 @@
         <h2>{{ event.title }}</h2>
     </div>
     <div class="description">
+        <h5><i>{{ event.type }}</i></h5>
         <p>{{ event.description }}</p>
     </div>
     <div class="info">
@@ -40,12 +42,48 @@
                 <p>Available Seats: {{ diff }} / {{event.seats_available}}</p>
             </div>
             {% if diff == 0 %}
-            <a href="#" class="register-btn" style="pointer-events: none;">No Available Seats</a>
+            <button class="register-btn" style="pointer-events: none;">No Available Seats</button>
             {% else %}
-            <a href="#" class="register-btn">Register</a>
+            <button id="registerBtn" class="register-btn">Register</button>
             {% endif %}
         </div>
     </div>
 </div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+
+</div>
+
+<script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("registerBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 {% endblock %}

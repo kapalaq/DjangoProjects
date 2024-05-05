@@ -1,0 +1,57 @@
+{% extends 'eventBlog/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'eventBlog/css/faq_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <div class="faq" id="faq">
+        <h1>FAQ</h1>
+
+        <div class="faq-item">
+            <h2>What is Ne Sxodim</h2>
+            <p>A small website where you canNOT check all current events in Almaty and register on them. Here you can only click on random buttons I painted for the last 5 days.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>Why did we create it?</h2>
+            <p>I ask myself the same question for 3 days in a row. After all I recently completed my first year as UG student in the Uni. However, it is still enjoyable enough.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>Where does it come from?</h2>
+            <p>From Technical Task obviously. This page is my magnum opus of creativity (jk).</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>Where can find real events and really register on them?</h2>
+            <p>Sxodim Almaty. I like them. Click here if you are interested: <a href="https://sxodim.com/almaty" style="text-decoration: none; color: #535c94" target="_blank">sxodim.com</a></p>
+        </div>
+    </div>
+
+    <div class="contacts" id="contacts">
+        <h1>Contacts</h1>
+
+        <div class="contact">
+            <h2>Telegram</h2>
+            <p>In case you have any questions you can reach owner on this Telegram.</p>
+            <a href="https://t.me/kapalaq" class="contact-btn" target="_blank">Go to Telegram</a>
+        </div>
+
+        <div class="contact">
+            <h2>Instagram</h2>
+            <p>It is not seem to be necessary, but you still can check on it.</p>
+            <a href="https://www.instagram.com/forfvcksvke/" class="contact-btn" target="_blank">Go to Instagram</a>
+        </div>
+
+        <div class="contact">
+            <h2>Other</h2>
+            <p><b>Phone:</b> +7 (708) 966 87 92</p>
+            <p><b>Email:</b> ruslan.nagimov@nu.edu.kz</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

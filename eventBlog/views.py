@@ -24,3 +24,11 @@ def event_details(request, event_id):
         'MEDIA_URL': settings.MEDIA_URL,
     }
     return render(request, 'eventBlog/event.html', context=context)
+
+
+def faqs_contacts(request):
+    context = {
+        'title': "FAQs and Contacts",
+        'MEDIA_URL': settings.MEDIA_URL,
+    }
+    return render(request, 'eventBlog/faq.html', context=context)
