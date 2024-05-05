@@ -6,3 +6,46 @@
 <link rel="stylesheet" href="{% static 'eventBlog/css/event_style.css' %}">
 {% endblock %}
 
+{% block content %}
+
+<div class="body-container">
+    <div class="poster">
+        <img src="{{MEDIA_URL}}{{ event.poster }}" alt="{{ event.title }} Poster" style="max-width: 100%;">
+    </div>
+    <div class="title">
+        <h2>{{ event.title }}</h2>
+    </div>
+    <div class="description">
+        <p>{{ event.description }}</p>
+    </div>
+    <div class="info">
+        <ul style="list-style: none;">
+            <li><b>Date:</b> {{ event.date }}</li>
+            <li><b>Price:</b> {{ event.price }} KZT</li>
+            <li><b>Location:</b> {{ event.place }}</li>
+            <li><b>Phone:</b> {{ event.phone}}</li>
+            <li><b>More info:</b> <a href="{{ event.url }}">{{ event.url }}</a></li>
+        </ul>
+        <div class="menu">
+            <div class="menu-item">
+                <p>Location: {{ event.place }}</p>
+            </div>
+            <div class="menu-item">
+                <p>Time: {{ event.time }}</p>
+            </div>
+            <div class="menu-item">
+                <p>Price: {{ event.price }} KZT</p>
+            </div>
+            <div class="menu-item">
+                <p>Available Seats: {{ diff }} / {{event.seats_available}}</p>
+            </div>
+            {% if diff == 0 %}
+            <a href="#" class="register-btn" style="pointer-events: none;">No Available Seats</a>
+            {% else %}
+            <a href="#" class="register-btn">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

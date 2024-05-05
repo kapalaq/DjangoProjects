@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+{% if events %}
 <div class="grid-container">
   {% for event in events %}
   <div class="box">
@@ -18,4 +19,9 @@
   </div>
   {% endfor %}
 </div>
+{% else %}
+<div style="text-align: center;">
+<img src="{% static 'eventBlog/img/NONE.jpg' %}" alt="SORRY! NO POSTS YET :(" style="max-width: 40%;">
+</div>
+{% endif %}
 {% endblock %}

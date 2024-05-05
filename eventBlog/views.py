@@ -19,6 +19,7 @@ def event_details(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     context = {
         'title': event.title,
+        'diff': (event.seats_available - event.seats_taken),
         'event': event,
         'MEDIA_URL': settings.MEDIA_URL,
     }

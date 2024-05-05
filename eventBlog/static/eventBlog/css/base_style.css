@@ -24,8 +24,9 @@ body {
     }
 }
 
-.nav-link:hover {
-    background-color: #c3cfcf;
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #08a3b1;
 }
 
 .active {
