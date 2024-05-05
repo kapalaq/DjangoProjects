@@ -57,10 +57,10 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Registration Form</h2>
-    <form id="registrationForm">
-        <label for="phone">Phone Number:</label><br>
-        <input type="text" id="phone" name="phone" required><br><br>
-        <input type="submit" value="Submit">
+    <form id="registrationForm" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" form="registrationForm">Submit</button>
     </form>
   </div>
 

@@ -28,6 +28,10 @@ class Event(models.Model):
         self.resized_poster = self.poster
         self.save()
 
+    def increase(self):
+        self.seats_taken += 1
+        self.save()
+
     def __str__(self):
         return self.title
 

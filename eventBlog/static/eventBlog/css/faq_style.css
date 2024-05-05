@@ -62,13 +62,13 @@
     background-color: #535c94;
     color: #ffffff;
     text-decoration: none;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: background-color 0.5s ease;
     transition: transform 0.5s ease;
 }
 
 .contact-btn:active {
     text-decoration: none;
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: transform 0.2s ease;
 }
