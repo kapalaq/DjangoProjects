@@ -1,0 +1,35 @@
+{% extends 'eventBlog/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'eventBlog/css/registration_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <h2>Registration Form</h2>
+    <div class="form-group">
+        <form id="registrationForm" method="post">
+            {% csrf_token %}
+            <h4>Username</h4>
+            <div>{{ form.username }}</div>
+            <div class="help">{{ form.username.help_text }}</div>
+            <br>
+            <h4>Email</h4>
+            <div>{{ form.email }}</div>
+            <div class="help">{{ form.email.help_text }}</div>
+            <br>
+            <hr>
+            <h4>Password</h4>
+            <div>{{ form.password1 }}</div>
+            <div class="help">{{ form.password1.help_text }}</div>
+            <h4>Password Confirmation</h4>
+            <div>{{ form.password2 }}</div>
+            <div class="help">Make sure your passwords are the same in both fields.</div>
+            <br>
+            <button type="submit" class="register-btn" form="registrationForm">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -29,6 +29,15 @@
         <li class="nav-item"><a href="{% url 'main' %}" class="nav-link active" aria-current="page" style="background-color: #ffffff; color: #535c94">Home</a></li>
         <li class="nav-item"><a href="{% url 'faqs and contacts' %}#faq" class="nav-link nav-btn" style="color: #ffffff;">FAQs</a></li>
         <li class="nav-item"><a href="{% url 'faqs and contacts' %}#contacts" class="nav-link nav-btn" style="color: #ffffff;">About</a></li>
+        {% if user.is_authenticated %}
+          {% if user.userprofile.registered %}
+          <li class="nav-item"><a href="{% url 'my page' %}" class="nav-link active" aria-current="page" style="background-color: #ffffff; color: #535c94;">My page</a></li>
+          {% else %}
+          <li class="nav-item"><a href="{% url 'registration' %}" class="nav-link active" aria-current="page" style="background-color: #ffffff; color: #535c94;;">Registration</a></li>
+          {% endif %}
+        {% else %}
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" style="background-color: #ffffff; color: #535c94;">Login</a></li>
+        {% endif %}
       </ul>
     </header>
   </div>

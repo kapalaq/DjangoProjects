@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django_resized import ResizedImageField
 
+from django.contrib.auth.models import User
+
 
 class Event(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -37,3 +39,14 @@ class Event(models.Model):
 
     class Meta:
         verbose_name_plural = "Events"
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    registered = models.BooleanField(default=False)
+
+    def is_registered(self):
+        return self.registered
+
+    class Meta:
+        verbose_name_plural = "User Profiles"

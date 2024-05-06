@@ -35,5 +35,5 @@ body {
 
 .active:hover {
     transition: 0.3s transform ease;
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
