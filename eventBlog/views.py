@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, views
 
-from .models import Event
+from .models import Event, User, UserEvent, UserProfile
 from .forms import RegisterForm, UserRegistrationForm
 
 
@@ -22,16 +22,21 @@ def index(request):
 def event_details(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     if request.method == 'POST':
-        # doesn't work, made of random
-        temp = RegisterForm(0, 0, request.POST)
+        temp = RegisterForm(None, 0, request.POST)
         if temp.is_valid():
-            # add reserved
             event.increase()
-    form = RegisterForm(av=event.seats_available, tk=event.seats_taken)
+            user = get_object_or_404(UserProfile, user=request.user)
+            user_event = UserEvent.objects.create(user=user, event=event, place=temp.cleaned_data['place'])
+            user_event.save()
+        else:
+            print(temp.errors)
+
+    form = RegisterForm(event=event, av=event.seats_available)
     context = {
         'title': event.title,
         'diff': (event.seats_available - event.seats_taken),
         'event': event,
+        'user': request.user,
         'form': form,
         'MEDIA_URL': settings.MEDIA_URL,
     }
@@ -60,6 +65,10 @@ def registration_page(request):
         'form': form,
     }
     return render(request, 'eventBlog/registration.html', context)
+
+
+class CustomLoginView(views.LoginView):
+    template_name = 'eventBlog/login.html'
 
 
 def my_page(request):

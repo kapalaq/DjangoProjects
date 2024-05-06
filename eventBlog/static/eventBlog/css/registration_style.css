@@ -45,3 +45,13 @@
     transform: scale(1.015);
     transition: transform 0.2s ease;
 }
+
+.else {
+    text-decoration: none;
+    color: #7783d3;
+}
+
+.else:hover {
+    text-decoration: none;
+    color: #535c94;
+}

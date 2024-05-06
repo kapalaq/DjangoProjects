@@ -1,5 +1,4 @@
 from django import forms
-import random
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -10,13 +9,14 @@ class RegisterForm(forms.Form):
     place = forms.IntegerField(widget=forms.Select(choices=[]), label="Place")
     credit_card = forms.IntegerField(max_value=9999999999999999, min_value=1000000000000000, label="Credit Card")
 
-    def __init__(self, av=0, tk=0, *args, **kwargs):
-        choices = set()
-        while len(choices) < (av - tk):
-            n = random.randint(1, av)
-            choices.add((n, n))
+    def __init__(self, event=None, av=0, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["place"].widget.choices = sorted(choices)
+        if not (event is None and av == 0):
+            choices = [(i, i) for i in range(1, av + 1)]
+            self.fields["place"].widget.choices = choices
+        else:
+            choices = [(i, i) for i in range(1, 3)]
+            self.fields["place"].widget.choices = choices
 
 
 class UserRegistrationForm(UserCreationForm):

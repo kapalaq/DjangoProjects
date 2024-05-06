@@ -1,0 +1,27 @@
+{% extends 'eventBlog/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'eventBlog/css/registration_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="body-container">
+    <h2>Login Form</h2>
+    <div class="form-group">
+        <form id="registrationForm" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h4>Username</h4>
+            <input type="text" id="username" name="username" class="form-control" placeholder="username">
+            <br>
+            <hr>
+            <h4>Password</h4>
+            <input type="password" id="password" name="password" class="form-control" placeholder="password">
+            <br>
+            <button type="submit" class="register-btn" form="registrationForm">Submit</button>
+        </form>
+    </div>
+    <i><a href="{% url 'registration' %}" class="else">I do not have an account</a></i>
+</div>
+{% endblock %}

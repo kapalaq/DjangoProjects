@@ -44,9 +44,16 @@ class Event(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     registered = models.BooleanField(default=False)
+    events = models.ManyToManyField('Event', related_name='user_events', through='UserEvent')
 
     def is_registered(self):
         return self.registered
 
     class Meta:
         verbose_name_plural = "User Profiles"
+
+
+class UserEvent(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    place = models.IntegerField()

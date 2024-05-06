@@ -58,12 +58,24 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Registration Form</h2>
-    <form id="registrationForm" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" form="registrationForm">Submit</button>
-    </form>
+    {% if user.is_authenticated %}
+      {% if user.userprofile.registered %}
+        <h2>Registration Form</h2>
+        <form id="registrationForm" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" form="registrationForm">Submit</button>
+        </form>
+      {% else %}
+        <h2>Please, Register first</h2>
+      <br>
+        <p>You can do this by following navigation bar button "Register"</p>
+      {% endif %}
+    {% else %}
+      <h2>Please, Login first</h2>
+      <br>
+      <p>You can do this by following navigation bar button "Login"</p>
+    {% endif %}
   </div>
 
 </div>
