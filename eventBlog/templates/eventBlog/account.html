@@ -1,0 +1,46 @@
+{% extends 'eventBlog/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'eventBlog/css/event_style.css' %}">
+<link rel="stylesheet" href="{% static 'eventBlog/css/index_style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="body-container">
+    <div class="title">
+        <h2>{{ user.username }}</h2>
+    </div>
+    <div class="description">
+        <h5>Email:</h5>
+        <p><i>{{ user.email }}</i></p>
+    </div>
+
+    <hr>
+
+    <div class="title">
+        <h2>Currently own tickets</h2>
+    </div>
+    {% if user_events %}
+    <div class="grid-container">
+      {% for user_event in user_events %}
+      <div class="box">
+        <a href="{% url 'details' user_event.event.id %}" target="_blank">
+          <img src="{{ MEDIA_URL }}{{ user_event.event.resized_poster }}" alt="{{ user_event.event.title }} poster">
+          <h3 class="title">{{ user_event.event.title }}</h3>
+          <h5 class="date">{{ user_event.event.date }}</h5>
+          <h5 class="date">Place: {{ user_event.place }}</h5>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align: center;">
+        <p style="font-style: italic; font-size:15px;">Nothing! Get some tickets on the main page :^)</p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -18,7 +18,7 @@ class Event(models.Model):
     posted_on = models.DateTimeField(null=True, blank=True)
     poster = models.ImageField(upload_to='image', null=True, blank=True)
     resized_poster = ResizedImageField(size=[640, 360], crop=['middle', 'center'], upload_to='resized_image',
-                                       null=True, blank=True, verbose_name="Resized Poster (16:9 only)")
+                                       null=True, blank=True, verbose_name="Poster again (it will be resized)")
     place = models.CharField(max_length=500, null=True, blank=True)
     phone = models.CharField(max_length=24, null=True, blank=True)
     url = models.URLField(max_length=300, null=True, blank=True)

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth import login, views
+from django.contrib.auth.decorators import login_required
 
 from .models import Event, User, UserEvent, UserProfile
 from .forms import RegisterForm, UserRegistrationForm
@@ -71,5 +72,13 @@ class CustomLoginView(views.LoginView):
     template_name = 'eventBlog/login.html'
 
 
+@login_required
 def my_page(request):
-    pass
+    user_events = UserEvent.objects.filter(user=get_object_or_404(UserProfile, user=request.user))
+    context = {
+        'title': 'My Page',
+        'user': request.user,
+        'user_events': user_events,
+        'MEDIA_URL': settings.MEDIA_URL,
+    }
+    return render(request, 'eventBlog/account.html', context)
